@@ -1,0 +1,31 @@
+html, 
+body {
+    height: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+.center{
+    display:flex; 
+    align-items: center;
+    justify-content:center;
+}
+
+
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    box-shadow: 5;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 10px;
+}
+
+.img-container{
+    width: 18rem;
+    height: 18rem;
+    margin: auto;
+}
+.button{
+    margin: 1.5rem;
+}

@@ -1,0 +1,43 @@
+{
+  "name": "macronium",
+  "productName": "Macronium",
+  "version": "0.0.0",
+  "description": "Macronium it is",
+  "main": "./src/js/main.js",
+  "build": {
+    "appId": "com.supersuman.macronium",
+    "win": {
+      "icon": "../img/icon.png"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "releaseType": "release"
+      }
+    ]
+  },
+  "scripts": {
+    "patch": "npm version patch &&  git push && git push --tags",
+    "minor": "npm version minor && git push && git push --tags",
+    "major": "npm version major && git push && git push --tags",
+    "start": "npx electron .",
+    "dist": "npx electron-builder"
+  },
+  "keywords": [],
+  "author": "Sumanth Perambuduri",
+  "license": "Apache License 2.0",
+  "dependencies": {
+    "@nut-tree/nut-js": "^2.0.1",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.3",
+    "ip": "^1.1.5",
+    "qrcode": "^1.5.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "electron": "^17.1.0",
+    "electron-builder": "^22.14.13"
+  }
+}
