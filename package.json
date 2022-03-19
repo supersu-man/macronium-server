@@ -28,6 +28,7 @@
   "license": "Apache License 2.0",
   "dependencies": {
     "@nut-tree/nut-js": "^2.0.1",
+    "bootstrap": "^5.1.3",
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.3",
     "ip": "^1.1.5",
