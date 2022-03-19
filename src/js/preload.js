@@ -4,10 +4,16 @@ const qrcode = require('qrcode')
 
 window.addEventListener('DOMContentLoaded', () => {
   initListeners()
-  var button = document.getElementById("updateButton")
-  button.addEventListener('click', () => {
+  var updateButton = document.getElementById("updateButton")
+  updateButton.addEventListener('click', () => {
     require('electron').shell.openExternal("https://github.com/supersu-man/macronium-pc/releases/latest")
   })
+
+  var repoButton = document.getElementById("repoButton")
+  repoButton.addEventListener('click', () => {
+    require('electron').shell.openExternal("https://github.com/supersu-man/macronium-pc")
+  })
+
 })
 
 function initListeners() {

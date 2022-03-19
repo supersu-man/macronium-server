@@ -8,35 +8,37 @@
 
 <body>
 
-    <div class="center h-100">
+  <div class="d-flex flex-column h-100">
 
+    <nav class="navbar rounded-3 shadow-sm">
+      <div class="container-fluid px-4">
+        <div>
+          <button id="repoButton" class="btn">Repository</button>
+        </div>
+        <div>
+          <button id="updateButton" class="btn" hidden="hidden">Update</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="h-100 flex-grow center">
       <div class="container">
-
-        <div class="row m-5">
+        <div class="row m-2">
           <div class="col center">
             <h2 id="status_text">Not Connected</h2>
           </div>
         </div>
-
-        <div class="row m-5">
+        <div class="row m-4">
           <div class="col center">
-            <div class="card center shadow border-0">
-              <canvas class ="img-size" id="img-container">
+            <div class="rounded-3 center shadow-sm border-0">
+              <canvas class="img-size" id="img-container">
             </div>
           </div>
         </div>
-
-        <div class="row m-5">
-          <div class="col center">
-            <Button id="updateButton" class="btn" hidden="hidden" >
-              Update
-            </Button>
-          </div>
-        </div>
-
       </div>
-
     </div>
+
+  </div>
 
 </body>
 
