@@ -1,0 +1,35 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 180px;
+    height: 180px;
+    margin: auto;
+    border: 15px solid #8781bd ;
+    background: no-repeat center url("https://raw.githubusercontent.com/supersu-man/macronium-pc/main/img/icon.png");
+    background-size: contain;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.btn {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #8781bd;
+    color: 8781bd;
+}
+
+a{
+    text-decoration: none;
+    font-size: small;
+}
+
+*{
+    font-family: 'Open Sans';
+}
