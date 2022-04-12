@@ -1,10 +1,8 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const {path, startServer, initListener, ipcSend} = require('./functions.js')
 const checkUpdate = require('./checkUpdate.js')
+
 function createWindow () {
-
-  
-
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
