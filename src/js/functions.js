@@ -4,6 +4,7 @@ const io = require('socket.io')(http, {
     cors: { origin: '*' }
 })
 const {keyboard, Key, mouse, Point} = require("@nut-tree/nut-js")
+const shell = require('electron').shell
 
 var pos = {x:0,y: 0}
 
@@ -17,6 +18,10 @@ function initListener(window) {
         socket.on("key-press", (arg) => {
             console.log(arg)
             keyPress(arg)
+        })
+
+        socket.on("open-link", (arg) => {
+            shell.openExternal(arg)
         })
 
         socket.on("mouse-move", (arg) => {
