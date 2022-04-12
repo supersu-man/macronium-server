@@ -27,3 +27,9 @@ jobs:
         with:
           args: "-p never"
           github_token: ${{ secrets.github_token }}
+
+      - name: Build Changelog
+        id: changelog
+        uses: ardalanamini/auto-changelog@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
