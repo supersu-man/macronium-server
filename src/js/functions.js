@@ -3,10 +3,10 @@ const http = require('http').createServer()
 const io = require('socket.io')(http, {
     cors: { origin: '*' }
 })
-const {keyboard, Key, mouse, Point} = require("@nut-tree/nut-js")
+const { keyboard, Key, mouse, Point } = require("@nut-tree/nut-js")
 const shell = require('electron').shell
 
-var pos = {x:0,y: 0}
+var pos = { x: 0, y: 0 }
 
 function initListener(window) {
 
@@ -16,8 +16,11 @@ function initListener(window) {
         console.log("Connected")
 
         socket.on("key-press", (arg) => {
-            console.log(arg)
             keyPress(arg)
+        })
+
+        socket.on("mouse-gestures", (arg) => {
+            startStopGestures(arg)
         })
 
         socket.on("open-link", (arg) => {
@@ -26,17 +29,25 @@ function initListener(window) {
 
         socket.on("mouse-move", (arg) => {
             movePointer(arg)
-            //console.log(arg)
+        })
+
+        socket.on("mouse-scroll", (arg) => {
+            scroll(arg)
         })
 
         socket.on("mouse-click", (arg) => {
             mouseClick(arg)
         })
-        
+
         socket.on("disconnect", () => {
             ipcSend(window, "setStatus", false)
         })
     })
+}
+
+async function startStopGestures(arg) {
+    pos.x = (await mouse.getPosition()).x
+    pos.y = (await mouse.getPosition()).y
 }
 
 async function keyPress(arg) {
@@ -44,21 +55,26 @@ async function keyPress(arg) {
     await keyboard.releaseKey(Key[arg])
 }
 
-async function movePointer(arg) {
-    if(arg=="start" || arg=="stop"){
-        pos.x = (await mouse.getPosition()).x
-        pos.y = (await mouse.getPosition()).y
+async function scroll(arg) {
+    var jsonObject = JSON.parse(arg)
+    var y = parseInt(jsonObject["y"])
+    if (y > 0) {
+        await mouse.scrollDown(-1 * y)
     } else {
-        var jsonObject = JSON.parse(arg)
-        var point = new Point()
-        point.x = pos.x + parseInt(jsonObject["x"])
-        point.y = pos.y + parseInt(jsonObject["y"])
-        await mouse.setPosition(point)
+        await mouse.scrollUp(y)
     }
 }
 
+async function movePointer(arg) {
+    var jsonObject = JSON.parse(arg)
+    var point = new Point()
+    point.x = pos.x + parseInt(jsonObject["x"])
+    point.y = pos.y + parseInt(jsonObject["y"])
+    await mouse.setPosition(point)
+}
+
 async function mouseClick(arg) {
-    if(arg=="leftclick"){
+    if (arg == "leftclick") {
         await mouse.leftClick()
     }
 }
