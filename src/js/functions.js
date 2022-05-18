@@ -16,7 +16,11 @@ function initListener(window) {
         console.log("Connected")
 
         socket.on("key-press", (arg) => {
-            keyPress(arg)
+            if (arg.includes('+')) {
+                keysPress(arg)
+            } else {
+                keyPress(arg)
+            }
         })
 
         socket.on("mouse-gestures", (arg) => {
@@ -48,6 +52,17 @@ function initListener(window) {
 async function startStopGestures(arg) {
     pos.x = (await mouse.getPosition()).x
     pos.y = (await mouse.getPosition()).y
+}
+
+async function keysPress(arg) {
+    var list = arg.split('+')
+    for (const k in list) {
+        await keyboard.pressKey(Key[list[k]])
+    }
+    list.reverse()
+    for (const k in list) {
+        await keyboard.releaseKey(Key[list[k]])
+    }
 }
 
 async function keyPress(arg) {
