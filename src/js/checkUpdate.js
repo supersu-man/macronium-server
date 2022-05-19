@@ -2,7 +2,7 @@ const request = require('request-promise')
 const cheerio = require('cheerio')
 const package = require('../../package.json')
 
-url = 'https://github.com/supersu-man/macronium-pc/releases/latest'
+url = 'https://github.com/supersu-man/macronium-server/releases/latest'
 
 
 async function getLatestVersion(){
