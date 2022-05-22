@@ -1,6 +1,8 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const {path, startServer, initListener, ipcSend} = require('./functions.js')
 const checkUpdate = require('./checkUpdate.js')
+const { autoUpdater } = require("electron-updater")
+autoUpdater.checkForUpdatesAndNotify()
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
