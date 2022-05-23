@@ -1,8 +1,10 @@
 const ip = require("ip")
 const {ipcRenderer} = require('electron')
 const qrcode = require('qrcode')
+const package = require('../../package.json')
 
 window.addEventListener('DOMContentLoaded', () => {
+  setVersionText()
   initListeners()
   var updateButton = document.getElementById("updateButton")
   updateButton.addEventListener('click', () => {
@@ -38,6 +40,11 @@ function initListeners() {
     element.removeAttribute("hidden")
   })
 
+}
+
+function setVersionText(){
+  var currentVersion = package.version.toString()
+  document.getElementById('version-text').innerHTML = 'v' + currentVersion
 }
 
 function makeQR(canvas) {
