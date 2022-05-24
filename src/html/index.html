@@ -11,21 +11,46 @@
 <body>
 
   <div class="container positon-relative h-100">
-    <div class="d-flex justify-content-center align-items-center text-center h-100">
+    <div class="row align-items-center h-100">
 
-      <div>
-        <canvas class="img-size" id="img-container" style="background-color: black;"></canvas>
-        <h5 id="status_text">Not Connected</h5>
+      <div class="col">
+        <div class="img-size h-auto m-auto">
+          <div class="h2">
+            To use macronium:
+          </div>
+          <ol class="h5">
+            <li>
+              Make sure both PC and your phone are connected to same WiFi
+            </li>
+            <li>
+              Open Macronium on your Phone
+            </li>
+            <li>
+              Tap on Scan button
+            </li>
+            <li>
+              Scan the QR
+            </li>
+          </ol>
+        </div>
+
       </div>
 
-      <div>
-        <button id="repoButton" type="button" class="btn btn-dark m-2">Repository</button>
-        <br>
-        <button id="updateButton" type="button" class="btn btn-secondary m-4" hidden="hidden">Update Found</button>
+      <div class="col text-center">
+        <div>
+          <canvas class="img-size" id="img-container" style="background-color: black;"></canvas>
+          <h5 id="status_text">Not Connected</h5>
+        </div>
       </div>
 
     </div>
+
+    <div class="position-absolute top-0 end-0 my-2 mx-4">
+      <button id="repoButton" type="button" class="btn btn-dark m-2">Repository</button>
+      <button id="updateButton" type="button" class="btn btn-secondary m-2" hidden="hidden">Update Found</button>
+    </div>
     <div class="position-absolute bottom-0 end-0 my-2 mx-4" id="version-text">version-text</div>
+
   </div>
 
 </body>

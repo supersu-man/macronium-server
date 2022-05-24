@@ -1,9 +1,17 @@
+
+@font-face {
+    font-family: OpenSans-Regular;
+    src: url(../assets/OpenSans-Regular.ttf);
+}
 html, 
 body {
     height: 100%;
     padding: 0px;
     margin: 0%;
+    font-family: OpenSans-Regular;
 }
+
+
 
 .img-size{
     width: 18rem;
