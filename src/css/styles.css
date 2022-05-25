@@ -1,9 +1,9 @@
-
 @font-face {
-    font-family: OpenSans-Regular;
-    src: url(../assets/OpenSans-Regular.ttf);
+    font-family: ProductSans-Regular;
+    src: url(../assets/ProductSans-Regular.ttf);
 }
-html, 
+
+html,
 body {
     height: 100%;
     padding: 0px;
@@ -11,9 +11,7 @@ body {
     font-family: OpenSans-Regular;
 }
 
-
-
-.img-size{
+.img-size {
     width: 18rem;
     height: 18rem;
 }
