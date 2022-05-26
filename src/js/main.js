@@ -10,7 +10,7 @@ function createWindow () {
     height: 600,
     icon: path.join(__dirname, '../../img/icon.png'),
     webPreferences: {
-      preload: path.join(__dirname, './preload.js')
+      preload: path.join(__dirname, './preload.js'),
     }
   })
   mainWindow.removeMenu()
