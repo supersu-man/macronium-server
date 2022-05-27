@@ -2,6 +2,9 @@ const ip = require("ip")
 const { ipcRenderer } = require('electron')
 const qrcode = require('qrcode')
 const package = require('../../package.json')
+const Store = require('electron-store')
+
+const store = new Store()
 
 window.addEventListener('DOMContentLoaded', () => {
   setVersionText()
@@ -36,15 +39,24 @@ function initIpcListeners() {
 function initElementListeners() {
 
   var darkModeSwitch = document.getElementById("darkSwitch")
+  if (store.has('darkMode')) {
+    darkModeSwitch.checked = true
+    document.getElementsByTagName("body")[0].classList.add("darkBody")
+    document.getElementsByTagName("button")[0].classList.add("lightBody")
+    document.getElementsByTagName("button")[1].classList.add("lightBody")
+  }
+
   darkModeSwitch.addEventListener('change', () => {
-    if(darkModeSwitch.checked){
+    if (darkModeSwitch.checked) {
       document.getElementsByTagName("body")[0].classList.add("darkBody")
       document.getElementsByTagName("button")[0].classList.add("lightBody")
       document.getElementsByTagName("button")[1].classList.add("lightBody")
-    } else{
+      store.set('darkMode', true)
+    } else {
       document.getElementsByTagName("body")[0].classList.remove("darkBody")
       document.getElementsByTagName("button")[0].classList.remove("lightBody")
       document.getElementsByTagName("button")[1].classList.remove("lightBody")
+      store.delete('darkMode')
     }
   })
 
