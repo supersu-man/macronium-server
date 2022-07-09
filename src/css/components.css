@@ -1,0 +1,58 @@
+@import url(./colors.css);
+
+body {
+    background-color: var(--surface);
+    color: var(--primary) !important;
+}
+
+.text-on-surface-variant {
+    color: var(--on-surface-variant);
+}
+
+.text-secondary {
+    color: var(--secondary);
+}
+
+.material-button-filled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--on-primary) !important;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 500px;
+    border: none;
+    background: var(--primary);
+}
+
+.material-button-border {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary) !important;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 500px;
+    border: 1px solid var(--outline);
+    background: var(--surface1);
+}
+
+.material-card {
+    color: var(--on-surface);
+    font-size: 16px;
+    border-radius: 12px;
+    background: var(--surface1);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+.form-switch .form-check-input,
+.form-switch .form-check-input:focus,
+.form-switch .form-check-input:checked {
+    outline: 0;
+    box-shadow: none;
+    height: 24px;
+    width: 48px;
+    border: 4px solid var(--primary);
+    background-image: url(../assets/svgs/circle.svg);
+    background-color: var(--primary);
+}

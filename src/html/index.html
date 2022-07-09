@@ -6,20 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/styles.css" rel="stylesheet">
+  <link href="../css/components.css" rel="stylesheet">
 </head>
 
-<body>
+<body id="body" class="light-theme position-relative">
 
-  <div class="container positon-relative h-100">
-    <div class="row h-100">
+  <div class="form-switch position-absolute top-0 end-0 m-3">
+    <input class="form-check-input" type="checkbox" id="themeSwitch">
+  </div>
+
+  <div class="container h-100">
+    <div class="row h-100 py-3">
 
       <div class="col center-vh">
-        <div class="img-size m-auto">
-          <label style="font-size:25px;">To use macronium:</label>
-          <ol class="list-group">
-            <li>
-              Make sure both PC and your phone are connected to same WiFi
-            </li>
+        <div class="img-size">
+          <div style="font-size: 32px;">To use macronium:</div>
+          <ol class="text-secondary" style="font-size: 18px;">
+            <li>Make sure both PC and your phone are connected to same WiFi</li>
             <li>Open Macronium on your Phone</li>
             <li>Tap on Scan button</li>
             <li>Scan the QR</li>
@@ -28,23 +31,25 @@
       </div>
 
       <div class="col center-vh flex-column">
-          <canvas class="img-size" id="img-container" style="background-color: black;"></canvas>
-          <label style="font-size: 25px;" id="status_text">Not Connected</label>
+        <canvas class="material-card img-size my-2" id="img-container"></canvas>
+        <div style="font-size: 25px;" id="status_text">Not Connected</div>
       </div>
-    </div>
 
-    <div class="position-absolute top-0 end-0 my-2 mx-4">
-      <button id="repoButton" type="button" class="btn btn-secondary m-2">Repository</button>
-      <button id="updateButton" type="button" class="btn btn-secondary m-2" hidden="hidden">Update Found</button>
     </div>
-    <div class="form-check form-switch position-absolute top-0 start-0 my-2 mx-4">
-      <input class="form-check-input" type="checkbox" id="darkSwitch">
-      <label class="form-check-label">Dark theme</label>
-    </div>
-    <div class="position-absolute bottom-0 end-0 my-2 mx-4" id="version-text">version-text</div>
-
   </div>
 
+  <div class="d-flex position-absolute top-0 start-0 m-3">
+    <button class="material-button-border me-3" id="repoButton">
+      Source code
+    </button>
+    <button class="material-button-filled" id="updateButton" hidden>
+      Update Found
+    </button>
+  </div>
+
+  <div class="text-secondary position-absolute bottom-0 end-0 m-3" id="version-text">version-text</div>
+
+<script src="../js/index.js"></script>
 </body>
 
 </html>

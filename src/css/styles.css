@@ -1,6 +1,6 @@
 @font-face {
-    font-family: custom-font;
-    src: url(../assets/KumbhSans.ttf); 
+    font-family: Roboto;
+    src: url(../assets/fonts/Roboto.ttf);
 }
 
 html,
@@ -8,8 +8,7 @@ body {
     height: 100%;
     padding: 0px;
     margin: 0%;
-    font-family: custom-font;
-    font-weight: 500;
+    font-family: Roboto;
 }
 
 .center-vh {
@@ -18,32 +17,11 @@ body {
     justify-content: center;
 }
 
-.form-check-input{
-    border-color: #1c1f23 !important;
-    box-shadow: none !important;
-    background-image: url(../assets/circle.png) !important;
-}
-
-.form-check-input:checked {
-    background-color: #1c1f23;
-    border-color: white !important;
-}
-
-.btn{
-    background-color: #1c1f23 ;
-}
-
 .img-size {
     width: 18rem;
     height: 18rem;
 }
 
-.darkBody{
-    background-color: #1c1f23;
-    color: white;
-}
-
-.lightBody{
-    background-color: white;
-    color: #1c1f23;
+a {
+	text-decoration: none;
 }
