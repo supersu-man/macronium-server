@@ -1,23 +1,59 @@
 const ip = require("ip")
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, contextBridge } = require('electron')
 const qrcode = require('qrcode')
 const package = require('../../package.json')
 const Store = require('electron-store')
 
 const store = new Store()
 
+contextBridge.exposeInMainWorld('store', {
+  isDarkModeEnabled: () => {
+    return store.has('darkMode')
+  },
+  enableDarkMode: () => {
+    store.set('darkMode', true)
+  },
+  disableDarkMode: () => {
+    store.delete('darkMode')
+  }
+})
+
+contextBridge.exposeInMainWorld('qr', {
+  setQR: (canvas, tint) => {
+    const qrString = ip.address()
+    const opts = {
+      width: 300,
+      color: {
+        dark: tint.trim(),
+        light: "#0000"
+      }
+    }
+    qrcode.toCanvas(canvas, qrString, opts, (error) => {
+      if (error) console.error(error)
+    })
+  }
+})
+
+contextBridge.exposeInMainWorld('shell', {
+  openExternal: (link) => {
+    require('electron').shell.openExternal(link)
+  }
+})
+
+contextBridge.exposeInMainWorld('version', {
+  setVersionText: (element) => {
+    var currentVersion = package.version.toString()
+    element.innerHTML = 'v' + currentVersion
+  }
+})
+
+
+
 window.addEventListener('DOMContentLoaded', () => {
-  setVersionText()
   initIpcListeners()
-  initElementListeners()
 })
 
 function initIpcListeners() {
-
-  ipcRenderer.on("setQR", (_, arg) => {
-    var canvas = document.getElementById("img-container")
-    makeQR(canvas)
-  })
 
   ipcRenderer.on("setStatus", (_, arg) => {
     var textView = document.getElementById("status_text")
@@ -34,54 +70,6 @@ function initIpcListeners() {
     element.removeAttribute("hidden")
   })
 
-}
-
-function initElementListeners() {
-
-  var darkModeSwitch = document.getElementById("darkSwitch")
-  if (store.has('darkMode')) {
-    darkModeSwitch.checked = true
-    document.getElementsByTagName("body")[0].classList.add("darkBody")
-    document.getElementsByTagName("button")[0].classList.add("lightBody")
-    document.getElementsByTagName("button")[1].classList.add("lightBody")
-  }
-
-  darkModeSwitch.addEventListener('change', () => {
-    if (darkModeSwitch.checked) {
-      document.getElementsByTagName("body")[0].classList.add("darkBody")
-      document.getElementsByTagName("button")[0].classList.add("lightBody")
-      document.getElementsByTagName("button")[1].classList.add("lightBody")
-      store.set('darkMode', true)
-    } else {
-      document.getElementsByTagName("body")[0].classList.remove("darkBody")
-      document.getElementsByTagName("button")[0].classList.remove("lightBody")
-      document.getElementsByTagName("button")[1].classList.remove("lightBody")
-      store.delete('darkMode')
-    }
-  })
-
-  var updateButton = document.getElementById("updateButton")
-  updateButton.addEventListener('click', () => {
-    require('electron').shell.openExternal("https://github.com/supersu-man/macronium-pc/releases/latest")
-  })
-
-  var repoButton = document.getElementById("repoButton")
-  repoButton.addEventListener('click', () => {
-    require('electron').shell.openExternal("https://github.com/supersu-man/macronium-pc")
-  })
-}
-
-function setVersionText() {
-  var currentVersion = package.version.toString()
-  document.getElementById('version-text').innerHTML = 'v' + currentVersion
-}
-
-function makeQR(canvas) {
-  var qrString = ip.address()
-  qrcode.toCanvas(canvas, qrString, { width: 300 }, (error) => {
-    if (error) console.error(error)
-    console.log('QR set successfully')
-  })
 }
 
 function sendMessage() {

@@ -11,11 +11,11 @@ function createWindow () {
     icon: path.join(__dirname, '../../img/icon.png'),
     webPreferences: {
       preload: path.join(__dirname, './preload.js'),
+      contextIsolation: true,
     }
   })
   mainWindow.removeMenu()
   mainWindow.loadFile('./src/html/index.html')
-  ipcSend(mainWindow, "setQR", true) //sets qr in preload
   initListener(mainWindow)
   startServer()
   checkUpdate.isNewUpdateFound((bool) => {
