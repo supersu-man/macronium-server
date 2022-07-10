@@ -1,4 +1,3 @@
-const path = require('path')
 const http = require('http').createServer()
 const io = require('socket.io')(http, {
     cors: { origin: '*' }
@@ -12,7 +11,9 @@ function initListener(window) {
 
     io.on("connection", (socket) => {
 
-        ipcSend(window, "setStatus", true)
+        window.webContents.on('did-finish-load', () => {
+            window.webContents.send("setStatus", true)
+        })
         console.log("Connected")
 
         socket.on("key-press", (arg) => {
@@ -44,7 +45,7 @@ function initListener(window) {
         })
 
         socket.on("disconnect", () => {
-            ipcSend(window, "setStatus", false)
+            window.webContents.send("setStatus", false)
         })
     })
 }
@@ -94,21 +95,11 @@ async function mouseClick(arg) {
     }
 }
 
-function startServer() {
+function startServer(window) {
     http.listen(6969, () => {
         console.log('Server running on port 6969')
     })
+    initListener(window)
 }
 
-function ipcSend(window, channel, value) {
-    window.webContents.send(channel, value)
-}
-
-function ipcReceive() {
-    ipcMain.on('bar', (event, arg) => {
-        //console.log(arg)
-        event.sender.send('foo', 'done')
-    })
-}
-
-module.exports = { path, initListener, startServer, ipcSend }
+module.exports = { startServer }

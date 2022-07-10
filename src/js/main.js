@@ -1,10 +1,11 @@
-const {app, BrowserWindow, ipcMain} = require('electron')
-const {path, startServer, initListener, ipcSend} = require('./functions.js')
-const checkUpdate = require('./checkUpdate.js')
+const { app, BrowserWindow } = require('electron')
+const { startServer } = require('./functions.js')
+const path = require('path')
+
 const { autoUpdater } = require("electron-updater")
 autoUpdater.checkForUpdatesAndNotify()
 
-function createWindow () {
+function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -16,14 +17,7 @@ function createWindow () {
   })
   mainWindow.removeMenu()
   mainWindow.loadFile('./src/html/index.html')
-  initListener(mainWindow)
-  startServer()
-  checkUpdate.isNewUpdateFound((bool) => {
-    if(bool) {
-      console.log("Update found")
-      ipcSend(mainWindow, "showButton", true)
-    }
-  })
+  startServer(mainWindow)
 }
 
 app.whenReady().then(() => {
@@ -33,6 +27,6 @@ app.whenReady().then(() => {
   })
 })
 
-app.on('window-all-closed',() => {
+app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })

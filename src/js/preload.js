@@ -2,6 +2,7 @@ const ip = require("ip")
 const { ipcRenderer, contextBridge } = require('electron')
 const qrcode = require('qrcode')
 const package = require('../../package.json')
+const checkUpdate = require('./checkUpdate.js')
 const Store = require('electron-store')
 
 const store = new Store()
@@ -47,37 +48,25 @@ contextBridge.exposeInMainWorld('version', {
   }
 })
 
-
-
-window.addEventListener('DOMContentLoaded', () => {
-  initIpcListeners()
+contextBridge.exposeInMainWorld('connection', {
+  setStatusListener: (element) => {
+    ipcRenderer.on("setStatus", (_, arg) => {
+      if (arg) {
+        element.innerHTML = "Connected"
+      } else {
+        element.innerHTML = "Not Connected"
+      }
+    })
+  }
 })
 
-function initIpcListeners() {
-
-  ipcRenderer.on("setStatus", (_, arg) => {
-    var textView = document.getElementById("status_text")
-    if (arg) {
-      console.log("Connected")
-      textView.innerHTML = "Connected"
-    } else {
-      textView.innerHTML = "Not Connected"
+try {
+  checkUpdate.isNewUpdateFound((bool) => {
+    if (bool) {
+      var element = document.getElementById("updateButton")
+      element.removeAttribute("hidden")
     }
   })
-
-  ipcRenderer.on("showButton", (_, arg) => {
-    var element = document.getElementById("updateButton")
-    element.removeAttribute("hidden")
-  })
-
-}
-
-function sendMessage() {
-  ipcRenderer.send("", "")
-}
-
-function recieveMessage(key, callback) {
-  ipcRenderer.on(key, (event, arg) => {
-    callback(event, arg)
-  })
+} catch (error) {
+  console.log("Unable to check for update")
 }

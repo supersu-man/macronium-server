@@ -4,7 +4,9 @@ const canvas = document.getElementById('img-container')
 const repoButton = document.getElementById('repoButton')
 const updateButton = document.getElementById('updateButton')
 const versionTextElement = document.getElementById('version-text')
+const statusTextElement = document.getElementById("status_text")
 
+window.connection.setStatusListener(statusTextElement)
 window.version.setVersionText(versionTextElement)
 
 if (window.store.isDarkModeEnabled()) {
