@@ -1,10 +1,10 @@
 const toggle = document.getElementById('themeSwitch')
 const body = document.getElementById('body')
-const canvas = document.getElementById('img-container')
+const canvas = document.getElementById('imgContainer')
 const repoButton = document.getElementById('repoButton')
 const updateButton = document.getElementById('updateButton')
-const versionTextElement = document.getElementById('version-text')
-const statusTextElement = document.getElementById("status_text")
+const versionTextElement = document.getElementById('versionText')
+const statusTextElement = document.getElementById("statusText")
 
 window.connection.setStatusListener(statusTextElement)
 window.version.setVersionText(versionTextElement)
