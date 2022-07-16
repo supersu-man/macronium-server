@@ -1,4 +1,24 @@
-@import url(./colors.css);
+.light-theme {
+    --primary: #5C53A7;
+    --on-surface-variant: #47464F;
+    --on-primary: #FFFFFF;
+    --on-surface: #1C1B1F;
+    --secondary: #5F5C71;
+    --surface: #FFFBFF;
+    --surface1: linear-gradient(0deg, rgba(92, 83, 167, 0.05), rgba(92, 83, 167, 0.05)), var(--surface);
+    --outline: #787680;
+}
+
+.dark-theme {
+    --primary: #C6BFFF;
+    --on-surface-variant: #C9C5D0;
+    --on-primary: #2D2276;
+    --on-surface: #E5E1E6;
+    --secondary: #C8C3DC;
+    --surface: #1C1B1F;
+    --surface1: linear-gradient(0deg, rgba(198, 191, 255, 0.05), rgba(198, 191, 255, 0.05)), var(--surface);
+    --outline: #928F99;
+}
 
 body {
     background-color: var(--surface);
