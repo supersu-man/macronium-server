@@ -1,7 +1,6 @@
 const { app, BrowserWindow } = require('electron')
-const { startServer } = require('./functions.js')
+const { startServer, initListener } = require('./functions.js')
 const path = require('path')
-
 const { autoUpdater } = require("electron-updater")
 autoUpdater.checkForUpdatesAndNotify()
 
@@ -12,12 +11,13 @@ function createWindow() {
     icon: path.join(__dirname, '../../img/icon.png'),
     webPreferences: {
       preload: path.join(__dirname, './preload.js'),
-      contextIsolation: true,
+      contextIsolation: true
     }
   })
-  mainWindow.removeMenu()
   mainWindow.loadFile('./src/html/index.html')
-  startServer(mainWindow)
+  mainWindow.removeMenu()
+  initListener(mainWindow)
+  startServer()
 }
 
 app.whenReady().then(() => {

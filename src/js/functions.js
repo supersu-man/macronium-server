@@ -10,10 +10,7 @@ var pos = { x: 0, y: 0 }
 function initListener(window) {
 
     io.on("connection", (socket) => {
-
-        window.webContents.on('did-finish-load', () => {
-            window.webContents.send("setStatus", true)
-        })
+        window.webContents.send("setStatus", true)
         console.log("Connected")
 
         socket.on("key-press", (arg) => {
@@ -95,11 +92,10 @@ async function mouseClick(arg) {
     }
 }
 
-function startServer(window) {
+function startServer() {
     http.listen(6969, () => {
         console.log('Server running on port 6969')
     })
-    initListener(window)
 }
 
-module.exports = { startServer }
+module.exports = { initListener, startServer }
