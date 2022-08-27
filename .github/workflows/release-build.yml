@@ -1,9 +1,9 @@
 name: Build/release
 
-on: 
-  push: 
-    branches:
-      - '**'
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   release:
