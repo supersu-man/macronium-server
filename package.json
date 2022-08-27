@@ -9,6 +9,9 @@
     "win": {
       "icon": "../img/icon.png"
     },
+    "linux": {
+      "target": "deb"
+    },
     "publish": [
       {
         "provider": "github",
