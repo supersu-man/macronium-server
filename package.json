@@ -10,7 +10,8 @@
       "icon": "../img/icon.png"
     },
     "linux": {
-      "target": "deb"
+      "target": "deb",
+      "icon": "../img/icon.png"
     },
     "publish": [
       {
@@ -29,8 +30,7 @@
     "dist": "npx electron-builder"
   },
   "keywords": [],
-  "author": "Sumanth Perambuduri",
-  "email": "sumanthpera444@gmail.com",
+  "author": "Sumanth Perambuduri <sumanthpera444@gmail.com>",
   "license": "Apache License 2.0",
   "dependencies": {
     "@nut-tree/nut-js": "^2.0.1",
