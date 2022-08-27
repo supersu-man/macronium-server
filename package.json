@@ -10,7 +10,8 @@
       "icon": "../img/icon.png"
     },
     "linux": {
-      "target": "deb"
+      "target": "deb",
+      "email": "sumanthpera444@gmail.com"
     },
     "publish": [
       {
