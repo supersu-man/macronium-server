@@ -28,11 +28,13 @@ function setVersionText() {
 function setTheme() {
   const body = document.getElementById('body')
   const toggle = document.getElementById('themeSwitch')
-  body.classList.add('dark-theme')
   if (store.has('darkMode')) {
     body.classList.remove('light-theme')
     body.classList.add('dark-theme')
     toggle.setAttribute('checked', 'true')
+  } else {
+    body.classList.remove('dark-theme')
+    body.classList.add('light-theme')
   }
 }
 
@@ -41,7 +43,6 @@ function setQR() {
   const ip = require('ip')
   const canvas = document.getElementById('imgContainer')
   const tint = getComputedStyle(canvas).getPropertyValue('--on-surface').trim()
-  console.log(tint + " color")
   const opts = {
     width: 300,
     color: {

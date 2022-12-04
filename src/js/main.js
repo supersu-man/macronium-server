@@ -16,6 +16,7 @@ function createWindow() {
   })
   mainWindow.loadFile('./src/html/index.html')
   mainWindow.removeMenu()
+  //mainWindow.webContents.openDevTools()  
   initListener(mainWindow)
   startServer()
 }
