@@ -1,6 +1,6 @@
 {
   "name": "macronium",
-  "productName": "Macronium",
+  "productName": "macronium",
   "version": "1.6.0",
   "description": "Macronium it is",
   "main": "src/main.js",
