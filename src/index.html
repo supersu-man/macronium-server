@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/styles.css" rel="stylesheet">
-  <link href="../css/components.css" rel="stylesheet">
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/styles.css" rel="stylesheet">
+  <link href="./css/components.css" rel="stylesheet">
 </head>
 
-<body id="body" class="light-theme position-relative">
+<body class="light-theme position-relative">
 
   <div class="form-switch position-absolute top-0 end-0 m-3">
     <input class="form-check-input" type="checkbox" id="themeSwitch">
@@ -31,7 +31,7 @@
       </div>
 
       <div class="col center-vh flex-column">
-        <canvas class="material-card img-size my-2" id="imgContainer"></canvas>
+        <img class="material-card img-size my-2" id="imgContainer"></img>
         <div style="font-size: 25px;" id="statusText">Not Connected</div>
       </div>
 
@@ -42,13 +42,10 @@
     <button class="material-button-border me-3" id="repoButton">
       Source code
     </button>
-    <button class="material-button-filled" id="updateButton" hidden>
-      Update Found
-    </button>
   </div>
 
   <div class="text-secondary position-absolute bottom-0 end-0 m-3" id="versionText">version-text</div>
-
+  <script src="./renderer.js"></script>
 </body>
 
 </html>

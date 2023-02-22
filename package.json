@@ -3,50 +3,38 @@
   "productName": "Macronium",
   "version": "1.6.0",
   "description": "Macronium it is",
-  "main": "./src/js/main.js",
-  "build": {
-    "appId": "com.supersuman.macronium",
-    "win": {
-      "icon": "../img/icon.png"
-    },
-    "linux": {
-      "target": "deb",
-      "icon": "../img/icon.png"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "releaseType": "release",
-        "repo": "macronium-server",
-        "owner": "supersu-man"
-      }
-    ]
-  },
+  "main": "src/main.js",
+  "repository": "github:supersu-man/macronium-server",
   "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
     "patch": "npm version patch &&  git push && git push --tags",
     "minor": "npm version minor && git push && git push --tags",
-    "major": "npm version major && git push && git push --tags",
-    "start": "npx electron .",
-    "dist": "npx electron-builder"
+    "major": "npm version major && git push && git push --tags"
   },
   "keywords": [],
   "author": "Sumanth Perambuduri <sumanthpera444@gmail.com>",
   "license": "Apache License 2.0",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
+    "@electron-forge/publisher-github": "^6.0.5",
+    "electron": "^23.1.0"
+  },
   "dependencies": {
     "@nut-tree/nut-js": "^2.0.1",
     "bootstrap": "^5.1.3",
-    "cheerio": "^1.0.0-rc.10",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.0.1",
-    "electron-updater": "^5.0.1",
-    "express": "^4.17.3",
     "ip": "^1.1.5",
     "qrcode": "^1.5.0",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6",
-    "socket.io": "^4.4.1"
-  },
-  "devDependencies": {
-    "electron": "^17.1.0",
-    "electron-builder": "^23.0.2"
+    "socket.io": "^4.4.1",
+    "update-electron-app": "^2.0.1"
   }
 }

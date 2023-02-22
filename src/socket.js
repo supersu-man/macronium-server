@@ -1,50 +1,54 @@
-const http = require('http').createServer()
-const io = require('socket.io')(http, {
-    cors: { origin: '*' }
-})
+const { Server } = require("socket.io")
 const { keyboard, Key, mouse, Point } = require("@nut-tree/nut-js")
 const shell = require('electron').shell
 
+var mainWindow
+const io = new Server()
+
 var pos = { x: 0, y: 0 }
 
-function initListener(window) {
+io.on("connection", (socket) => {
+    mainWindow.webContents.send('status', true)
 
-    io.on("connection", (socket) => {
-        window.webContents.send("setStatus", true)
-        console.log("Connected")
-
-        socket.on("key-press", (arg) => {
-            if (arg.includes('+')) {
-                keysPress(arg)
-            } else {
-                keyPress(arg)
-            }
-        })
-
-        socket.on("mouse-gestures", (arg) => {
-            startStopGestures(arg)
-        })
-
-        socket.on("open-link", (arg) => {
-            shell.openExternal(arg)
-        })
-
-        socket.on("mouse-move", (arg) => {
-            movePointer(arg)
-        })
-
-        socket.on("mouse-scroll", (arg) => {
-            scroll(arg)
-        })
-
-        socket.on("mouse-click", (arg) => {
-            mouseClick(arg)
-        })
-
-        socket.on("disconnect", () => {
-            window.webContents.send("setStatus", false)
-        })
+    socket.on("key-press", (arg) => {
+        if (arg.includes('+')) {
+            keysPress(arg)
+        } else {
+            keyPress(arg)
+        }
     })
+
+    socket.on("mouse-gestures", (arg) => {
+        startStopGestures(arg)
+    })
+
+    socket.on("open-link", (arg) => {
+        shell.openExternal(arg)
+    })
+
+    socket.on("mouse-move", (arg) => {
+        movePointer(arg)
+    })
+
+    socket.on("mouse-scroll", (arg) => {
+        scroll(arg)
+    })
+
+    socket.on("mouse-click", (arg) => {
+        mouseClick(arg)
+    })
+
+    socket.on("disconnect", (reason) => {
+        mainWindow.webContents.send('status', false)
+    })
+
+    console.log("connected")
+})
+
+const listen = async (window) => {
+    mainWindow = window
+    io.listen(6969)
+    console.log('listening')
 }
 
 async function startStopGestures(arg) {
@@ -92,10 +96,4 @@ async function mouseClick(arg) {
     }
 }
 
-function startServer() {
-    http.listen(6969, () => {
-        console.log('Server running on port 6969')
-    })
-}
-
-module.exports = { initListener, startServer }
+module.exports = { listen }
