@@ -51,12 +51,12 @@ const listen = async (window) => {
     console.log('listening')
 }
 
-async function startStopGestures(arg) {
+const startStopGestures = async (arg) => {
     pos.x = (await mouse.getPosition()).x
     pos.y = (await mouse.getPosition()).y
 }
 
-async function keysPress(arg) {
+const keysPress = async (arg) => {
     var list = arg.split('+')
     for (const k in list) {
         await keyboard.pressKey(Key[list[k]])
@@ -67,12 +67,12 @@ async function keysPress(arg) {
     }
 }
 
-async function keyPress(arg) {
+const keyPress = async (arg) => {
     await keyboard.pressKey(Key[arg])
     await keyboard.releaseKey(Key[arg])
 }
 
-async function scroll(arg) {
+const scroll = async (arg) => {
     var jsonObject = JSON.parse(arg)
     var y = parseInt(jsonObject["y"])
     if (y > 0) {
@@ -82,7 +82,7 @@ async function scroll(arg) {
     }
 }
 
-async function movePointer(arg) {
+const movePointer = async (arg) => {
     var jsonObject = JSON.parse(arg)
     var point = new Point()
     point.x = pos.x + parseInt(jsonObject["x"])
@@ -90,7 +90,7 @@ async function movePointer(arg) {
     await mouse.setPosition(point)
 }
 
-async function mouseClick(arg) {
+const mouseClick = async (arg) => {
     if (arg == "leftclick") {
         await mouse.leftClick()
     }

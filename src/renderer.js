@@ -10,8 +10,14 @@ window.api.getVersion().then((version) => {
 
 const statusTextElement = document.getElementById("statusText")
 window.api.status((event, bool) => {
-    if (bool) statusTextElement.innerHTML = 'Connected'
-    else statusTextElement.innerHTML = 'Disconnected'
+    if (bool) {
+        statusTextElement.innerHTML = 'Connected'
+        document.getElementById('imgContainer').setAttribute('hidden', 'true')
+    }
+    else {
+        statusTextElement.innerHTML = 'Disconnected'
+        document.getElementById('imgContainer').removeAttribute('hidden')
+    }
 })
 
 const repoButton = document.getElementById('repoButton')

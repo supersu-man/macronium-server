@@ -58,5 +58,4 @@ ipcMain.handle('getTheme', () => {
 ipcMain.handle('saveTheme', (event, bool) => {
   if (bool) store.set('darkMode', bool)
   else store.delete('darkMode')
-  console.log(store.has('darkMode'))
 })

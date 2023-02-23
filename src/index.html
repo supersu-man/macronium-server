@@ -4,47 +4,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./css/styles.css" rel="stylesheet">
-  <link href="./css/components.css" rel="stylesheet">
+  <link href="./assets/bootstrap.min.css" rel="stylesheet">
+  <link href="./styles.css" rel="stylesheet">
 </head>
 
 <body class="light-theme position-relative">
+
+  <button class="position-absolute top-0 start-0 m-3 material-button-border" id="repoButton">
+    Source code
+  </button>
 
   <div class="form-switch position-absolute top-0 end-0 m-3">
     <input class="form-check-input" type="checkbox" id="themeSwitch">
   </div>
 
-  <div class="container h-100">
-    <div class="row h-100 py-3">
-
-      <div class="col center-vh">
-        <div class="img-size">
-          <div style="font-size: 32px;">To use macronium:</div>
-          <ol class="text-secondary" style="font-size: 18px;">
-            <li>Make sure both PC and your phone are connected to same WiFi</li>
-            <li>Open Macronium on your Phone</li>
-            <li>Tap on Scan button</li>
-            <li>Scan the QR</li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="col center-vh flex-column">
-        <img class="material-card img-size my-2" id="imgContainer"></img>
-        <div style="font-size: 25px;" id="statusText">Not Connected</div>
-      </div>
-
+  <div class="d-flex justify-content-center align-items-center h-100">
+    
+    <div class="m-2" style="width: 300px;">
+      <div style="font-size: 32px;">To use macronium:</div>
+      <ol class="text-on-surface-variant" style="font-size: 18px;">
+        <li>Make sure both PC and your phone are connected to same WiFi</li>
+        <li>Open Macronium on your Phone</li>
+        <li>Tap on Scan button</li>
+        <li>Scan the QR</li>
+      </ol>
     </div>
+
+    <div class="d-flex flex-column text-center m-2" style="width: 300px;">
+      <img class="card shadow my-2" id="imgContainer" style="border-radius: 20px;"></img>
+      <div style="font-size: 25px;" id="statusText">Not Connected</div>
+    </div>
+
   </div>
 
-  <div class="d-flex position-absolute top-0 start-0 m-3">
-    <button class="material-button-border me-3" id="repoButton">
-      Source code
-    </button>
-  </div>
-
-  <div class="text-secondary position-absolute bottom-0 end-0 m-3" id="versionText">version-text</div>
+  <div class="text-on-surface-variant position-absolute bottom-0 end-0 m-3" id="versionText">version-text</div>
   <script src="./renderer.js"></script>
 </body>
 
