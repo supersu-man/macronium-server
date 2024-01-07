@@ -58,6 +58,7 @@ jobs:
         id: update_release
         uses: meeDamian/github-release@2.0
         with:
+          tag: v${{ github.event.head_commit.message }}
           allow_override: true
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Release ${{github.ref_name}}
