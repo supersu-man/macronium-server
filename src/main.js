@@ -33,15 +33,11 @@ app.on('activate', () => {
 
 const { ipcMain } = require('electron')
 const qrcode = require('qrcode')
-const ip = require('ip')
 const package = require('../package.json')
 const shell = require('electron').shell
 const Store = require('electron-store')
 const store = new Store()
 
-ipcMain.handle('getqr', () => {
-  return qrcode.toDataURL(ip.address(), { width: 300 })
-})
 
 ipcMain.handle('getVersion', () => {
   return package.version.toString()
@@ -58,4 +54,17 @@ ipcMain.handle('getTheme', () => {
 ipcMain.handle('saveTheme', (event, bool) => {
   if (bool) store.set('darkMode', bool)
   else store.delete('darkMode')
+})
+
+var address = ''
+var os = require('os');
+var interfaces = os.networkInterfaces();
+interfaces['Wi-Fi'].forEach(adapter => {
+  if (adapter.family === 'IPv4' && !adapter.internal) {
+    address = adapter.address
+  }
+});
+
+ipcMain.handle('getqr', () => {
+  return qrcode.toDataURL(address, { width: 300 })
 })
