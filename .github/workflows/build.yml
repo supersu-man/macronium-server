@@ -61,5 +61,5 @@ jobs:
           tag: v${{ github.event.head_commit.message }}
           allow_override: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: Release ${{github.ref_name}}
+          name: Release v${{ github.event.head_commit.message }}
           body: ${{ steps.changelog.outputs.changelog }} &#x20;
