@@ -58,12 +58,17 @@ ipcMain.handle('saveTheme', (event, bool) => {
 
 var address = ''
 var os = require('os');
-var interfaces = os.networkInterfaces();
-interfaces['Wi-Fi'].forEach(adapter => {
-  if (adapter.family === 'IPv4' && !adapter.internal) {
-    address = adapter.address
-  }
-});
+
+const networkInterfaces = os.networkInterfaces();
+
+Object.keys(networkInterfaces).forEach((interfaceName) => {
+  const interfaces = networkInterfaces[interfaceName]
+  interfaces.forEach((iface) => {
+    if (iface.family == 'IPv4' && !iface.internal && (interfaceName.startsWith('wl') || interfaceName.startsWith('Wi-Fi') || interfaceName.startsWith('en'))) {
+      address = iface.address
+    }
+  })
+})
 
 ipcMain.handle('getqr', () => {
   return qrcode.toDataURL(address, { width: 300 })
