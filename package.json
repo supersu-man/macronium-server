@@ -30,6 +30,7 @@
     "@nut-tree/nut-js": "^3.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.1.0",
+    "loudness": "^0.4.2",
     "qrcode": "^1.5.1",
     "socket.io": "^4.6.1",
     "update-electron-app": "^2.0.1"

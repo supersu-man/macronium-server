@@ -1,6 +1,7 @@
 const { Server } = require("socket.io")
 const { keyboard, Key, mouse, Point } = require("@nut-tree/nut-js")
 const shell = require('electron').shell
+const loudness = require('loudness')
 keyboard.config = { autoDelayMs: 0 }
 
 var mainWindow
@@ -41,6 +42,10 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", (reason) => {
         mainWindow.webContents.send('status', false)
+    })
+
+    socket.on("set-volume", (arg) => {
+        loudness.setVolume(arg)
     })
 
     console.log("connected")
