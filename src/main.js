@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const { listen } = require('./socket')
 
-require('update-electron-app')()
+require('update-electron-app').updateElectronApp()
 
 if (require('electron-squirrel-startup')) app.quit()
 

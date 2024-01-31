@@ -19,20 +19,20 @@
   "author": "Sumanth Perambuduri <sumanthpera444@gmail.com>",
   "license": "Apache License 2.0",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.5",
-    "@electron-forge/maker-deb": "^6.0.5",
-    "@electron-forge/maker-squirrel": "^6.0.5",
-    "@electron-forge/maker-zip": "^6.0.5",
-    "@electron-forge/publisher-github": "^6.0.5",
-    "electron": "^23.1.1"
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/publisher-github": "^7.2.0",
+    "electron": "^28.2.0"
   },
   "dependencies": {
-    "@nut-tree/nut-js": "^3.0.0",
+    "@nut-tree/nut-js": "^3.1.2",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.1.0",
     "loudness": "^0.4.2",
-    "qrcode": "^1.5.1",
-    "socket.io": "^4.6.1",
-    "update-electron-app": "^2.0.1"
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.7.4",
+    "update-electron-app": "^3.0.0"
   }
 }
