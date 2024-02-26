@@ -20,6 +20,10 @@ io.on("connection", (socket) => {
         }
     })
 
+    socket.on("keyboard",  (arg) => {
+        keyboard.type(arg)
+    })
+
     socket.on("mouse-gestures", (arg) => {
         startStopGestures(arg)
     })
